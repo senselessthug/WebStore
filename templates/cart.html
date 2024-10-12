@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кошик</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Ваш кошик</h1>
+        <nav>
+            <a href="{{ url_for('index') }}" class="back-link">← Повернутися до каталогу</a>
+        </nav>
+    </header>
+
+    <main>
+        {% if cart %}
+        <ul class="cart-list">
+            {% for item in cart %}
+            <li class="cart-item">
+                <span>{{ item.name }}</span>
+                <span>{{ item.price }} грн</span>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <div class="checkout-section">
+            <form action="{{ url_for('checkout') }}" method="POST">
+                <h2>Оформлення замовлення</h2>
+                <label>Ім'я:
+                    <input type="text" name="name" required>
+                </label><br>
+                <label>Адреса:
+                    <input type="text" name="address" required>
+                </label><br>
+                <label>Телефон:
+                    <input type="tel" name="phone" required>
+                </label><br>
+                <button type="submit" class="btn">Підтвердити замовлення</button>
+            </form>
+        </div>
+        {% else %}
+        <p>Ваш кошик порожній.</p>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>© 2024 Інтернет-Магазин</p>
+    </footer>
+</body>
+</html>
