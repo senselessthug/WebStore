@@ -41,14 +41,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return price > 0 && priceRegex.test(price.toString());
     }
 
-    // Remove item from cart
     function removeFromCart(index) {
-        cart.splice(index, 1); // Remove the item at the specified index
+        cart.splice(index, 1); 
         saveCart();
         renderCart();
     }
 
-    // Render cart with delete buttons
     function renderCart() {
         if (cart.length === 0) {
             cartElement.innerHTML = '<p>Кошик порожній</p>';
