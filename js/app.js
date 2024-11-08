@@ -40,13 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const priceRegex = /^\d+(\.\d{2})?$/;
         return price > 0 && priceRegex.test(price.toString());
     }
-
+    
     function removeFromCart(index) {
         cart.splice(index, 1); 
         saveCart();
         renderCart();
     }
-
+    
     function renderCart() {
         if (cart.length === 0) {
             cartElement.innerHTML = '<p>Кошик порожній</p>';
@@ -64,11 +64,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function submitOrder(event) {
-        event.preventDefault();
+        event.preventDefault();  
         if (cart.length === 0) {
             alert('Ваш кошик порожній!');
             return;
         }
+
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const address = document.getElementById('address').value;
@@ -99,5 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addToCart = addToCart;
     window.submitOrder = submitOrder;
-    window.removeFromCart = removeFromCart; // Make removeFromCart globally accessible
+    window.removeFromCart = removeFromCart;
+    
+    document.getElementById('orderForm').addEventListener('submit', submitOrder);
 });
